@@ -1,9 +1,14 @@
 "use strict";
 
+import Client from "./Client";
+
 /**
  * The user that is being used by the client.
  */
 class ClientUser {
+
+  private _client: Client;
+
   /**
    * Constructs an instance of ClientUser. For internal use only.
    * @param {Object} data
@@ -33,4 +38,4 @@ class ClientUser {
   }
 }
 
-module.exports = ClientUser;
+export default ClientUser;

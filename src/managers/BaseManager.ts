@@ -1,6 +1,8 @@
 "use strict";
 
-const ExtMap = require("../structures/ExtMap.js");
+import Client from "../client/Client";
+import ExtMap from "../structures/ExtMap";
+
 
 /**
  * BaseManager class.
@@ -8,6 +10,10 @@ const ExtMap = require("../structures/ExtMap.js");
  * @hideconstructor
  */
 class BaseManager {
+
+  private _client: Client;
+  private _cache: ExtMap;
+
   constructor(client) {
     this._client = client;
     this._cache = new ExtMap();
@@ -32,4 +38,4 @@ class BaseManager {
   }
 }
 
-module.exports = BaseManager;
+export default BaseManager;

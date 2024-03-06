@@ -1,30 +1,38 @@
 {
-  "name": "signal-bot",
-  "version": "0.0.2",
+  "name": "signal-bot-node",
+  "version": "0.0.1",
   "description": "A library for creating bots that interact with the Signal application. Not affiliated with the Signal project or Open Whisper Systems.",
-  "main": "./src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "docs:build": "jsdoc -c ./docs/jsdoc.json"
+    "docs:build": "jsdoc -c ./docs/jsdoc.json",
+    "compile": "tsc",
+    "dev": "tsc -w"
   },
-  "homepage": "https://github.com/Bentipa/signal-bot#readme",
+  "homepage": "https://github.com/Bentipa/signal-bot-node#readme",
   "bugs": {
-    "url": "https://github.com/Bentipa/signal-bot/issues"
+    "url": "https://github.com/Bentipa/signal-bot-node/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bentipa/signal-bot.git"
+    "url": "https://github.com/Bentipa/signal-bot-node.git"
   },
   "keywords": [
     "signal",
     "bot",
     "client"
   ],
-  "author": "Benjamin Pabst (Bentipa) and Vietbao Tran (TapuCosmo)",
+  "author": "Benjamin Pabst (Bentipa)",
   "license": "MIT",
   "dependencies": {
-    "dbus-next": "^0.10.2"
+    "dbus-next": "^0.10.2",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@types/node": "^20.11.24",
     "docdash": "^1.2.0",
     "eslint": "^7.17.0",
     "jsdoc": "^3.6.6"

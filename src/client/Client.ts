@@ -1,20 +1,27 @@
 "use strict";
 
-const EventEmitter = require("events");
-
-const dbus = require("dbus-next");
-
-const { defaultClientSettings } = require("../constants");
-const { debugLog, deepMerge } = require("../util");
-const ClientUser = require("./ClientUser.js");
-const ConversationManager = require("../managers/ConversationManager.js");
-const Message = require("../structures/Message.js");
+import { ClientInterface, MessageBus, sessionBus, systemBus } from "dbus-next";
+import { EventEmitter } from "stream";
+import defaultClientSettings from "../constants/defaultClientSettings";
+import ConversationManager from "../managers/ConversationManager";
+import Message from "../structures/Message";
+import debugLog from "../util/debugLog";
+import deepMerge from "../util/deepMerge";
+import ClientUser from "./ClientUser";
 
 /**
  * Signal bot client class.
  * @extends EventEmitter
  */
 class Client extends EventEmitter {
+
+  settings: any;
+  _user: ClientUser;
+  _conversations: ConversationManager;
+  _bus: MessageBus;
+  _busInterface: ClientInterface;
+  _connectionCheckInterval: NodeJS.Timeout;
+
   /**
    * Construct a Client.
    * @param {Object} [settings] - The settings for the Client.
@@ -25,7 +32,7 @@ class Client extends EventEmitter {
    * @param {string} [settings.dbus.account] - D-Bus account name (if mode =`multiple`, replace + with _ in phone number).
    * @param {string} [settings.dbus.type=system] - D-Bus type. Can be `system` or `session`.
    */
-  constructor(settings = {}) {
+  constructor(settings: { dbus?: { connectionCheckInterval?: number; destination?: string; accountMode?: string; account?: string; type?: string; }; } = {}) {
     super();
     this.settings = deepMerge(settings, defaultClientSettings);
     if (typeof this.settings.dbus?.connectionCheckInterval !== "number") {
@@ -71,18 +78,18 @@ class Client extends EventEmitter {
    * Connect to the signal-cli daemon over D-Bus.
    * @return {Promise<undefined>}
    */
-  async connect() {
+  async connect(): Promise<undefined> {
     if (this.settings.dbus.type === "session") {
-      this._bus = dbus.sessionBus();
+      this._bus = sessionBus();
     } else {
-      this._bus = dbus.systemBus();
+      this._bus = systemBus();
     }
     const interfaces = await this._bus.getProxyObject(
       this.settings.dbus.destination,
       "/org/asamk/Signal/" +
-        (this.settings.dbus.accountMode === "single"
-          ? ""
-          : this.settings.dbus.account)
+      (this.settings.dbus.accountMode === "single"
+        ? ""
+        : this.settings.dbus.account)
     );
     this._busInterface = interfaces.getInterface("org.asamk.Signal");
 
@@ -159,10 +166,10 @@ class Client extends EventEmitter {
     );
 
     // Hacky workaround for dbus-next not handling multiple input signatures well.
-    this._busInterface.$methods
-      .filter((method) => method.name === "sendMessage")
-      .forEach((method) => (method.inSignature = "sasas"));
+    // this._busInterface.$methods
+    //   .filter((method) => method.name === "sendMessage")
+    //   .forEach((method) => (method.inSignature = "sasas"));
   }
 }
 
-module.exports = Client;
+export default Client;

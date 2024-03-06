@@ -1,8 +1,8 @@
 "use strict";
 
-const BaseManager = require("./BaseManager.js");
-const GroupConversation = require("../structures/GroupConversation.js");
-const UserConversation = require("../structures/UserConversation.js");
+import GroupConversation from "../structures/GroupConversation";
+import UserConversation from "../structures/UserConversation";
+import BaseManager from "./BaseManager";
 
 /**
  * ConversationManager class.
@@ -88,4 +88,4 @@ class ConversationManager extends BaseManager {
   }
 }
 
-module.exports = ConversationManager;
+export default ConversationManager;

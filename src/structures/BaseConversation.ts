@@ -1,9 +1,20 @@
 "use strict";
 
+import Client from "../client/Client";
+
+type BaseConversationData = {
+  client: Client;
+  id: string;
+};
+
 /**
  * BaseConversation structure.
  */
 class BaseConversation {
+
+  private _client: Client;
+  private _id: string;
+
   /**
    * Constructs an instance of BaseConversation. For internal use only.
    * @param {Object} data
@@ -11,7 +22,7 @@ class BaseConversation {
    * @param {string} data.id
    * @hideconstructor
    */
-  constructor(data = {}) {
+  constructor(data: BaseConversationData) {
     this._client = data.client;
     this._id = data.id;
   }
@@ -39,4 +50,4 @@ class BaseConversation {
   }
 }
 
-module.exports = BaseConversation;
+export default BaseConversation;

@@ -1,9 +1,30 @@
 "use strict";
 
+import Client from "../client/Client";
+import GroupConversation from "./GroupConversation";
+import UserConversation from "./UserConversation";
+
+type MessageData = {
+  client: Client;
+  timestamp: number;
+  authorID: string;
+  conversation: UserConversation | GroupConversation;
+  attachments: Array<Buffer>;
+  content: string;
+};
+
 /**
  * Message structure.
  */
 class Message {
+
+  private _client: Client;
+  private _timestamp: number;
+  private _author: { id: string };
+  private _conversation: UserConversation | GroupConversation;
+  private _attachments: Array<Buffer>;
+  private _content: string;
+
   /**
    * Constructs an instance of Message. For internal use only.
    * @param {Object} data
@@ -15,7 +36,7 @@ class Message {
    * @param {string} data.content
    * @hideconstructor
    */
-  constructor(data = {}) {
+  constructor(data: MessageData) {
     this._client = data.client;
     this._timestamp = data.timestamp;
     this._author = {
@@ -84,4 +105,4 @@ class Message {
   }
 }
 
-module.exports = Message;
+export default Message;

@@ -1,6 +1,7 @@
 "use strict";
 
-const BaseConversation = require("./BaseConversation.js");
+import BaseConversation from "./BaseConversation";
+
 
 /**
  * GroupConversation structure.
@@ -55,4 +56,4 @@ class GroupConversation extends BaseConversation {
   }
 }
 
-module.exports = GroupConversation;
+export default GroupConversation;

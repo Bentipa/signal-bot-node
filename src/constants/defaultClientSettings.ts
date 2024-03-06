@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = {
+export default {
   dbus: {
     connectionCheckInterval: 5000,
     destination: "org.asamk.Signal",

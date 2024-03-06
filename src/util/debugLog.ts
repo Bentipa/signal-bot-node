@@ -4,4 +4,4 @@ function debugLog(str) {
   console.log(`[DEBUG] ${str}`);
 }
 
-module.exports = debugLog;
+export default debugLog;
