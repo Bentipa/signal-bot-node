@@ -1,20 +1,18 @@
 # Signal-Bot
 
 A library for creating bots that interact with the Signal application. Not affiliated with the Signal project or Open Whisper Systems.
-This implementation bases on the abondoned [signal-bot](https://github.com/TapuCosmo/signal-bot).
-
+This implementation bases on the abandoned [signal-bot](https://github.com/TapuCosmo/signal-bot).
 
 Install with `npm install signal-bot-node`.
 
-Currently only works on Linux, with Node.js >=14.0.0.
+Currently, only tested on Linux, with Node.js >=18.0.0.
 
 This library requires a working installation of [signal-cli](https://github.com/AsamK/signal-cli)
-running in daemon mode with the phone number you want to use.
-Use [this Python script](https://gist.github.com/Vic3198/f0c9e17ef3d70e7b8c066bfd8cf4db2d) for an easy installation process.
+running in daemon mode with the phone number you want to use, or the multi-account feature enabled.
 
-Tested on v0.7.2 of signal-cli.
+Tested on v0.13.1 of signal-cli.
 
-[View Documentation](https://tapucosmo.github.io/signal-bot/)
+Attention: this library is currently under heavy development and not ready for production use.
 
 ## Example Usage
 
