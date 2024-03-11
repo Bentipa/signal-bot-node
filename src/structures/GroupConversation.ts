@@ -50,7 +50,7 @@ class GroupConversation extends BaseConversation {
    * @return {Promise<number>} timestamp - The timestamp of the sent message.
    */
   async sendMessage(content, attachments = []) {
-    const conversation = [this._idBuffer];
+    const conversation = this._idBuffer;
     const timestamp = await this.client._busInterface.sendGroupMessage(content, attachments, conversation);
     return Number(timestamp);
   }
