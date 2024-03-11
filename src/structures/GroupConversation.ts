@@ -50,8 +50,8 @@ class GroupConversation extends BaseConversation {
    * @return {Promise<number>} timestamp - The timestamp of the sent message.
    */
   async sendMessage(content, attachments = []) {
-    const conversation = this._idBuffer;
-    const timestamp = await this.client._busInterface.sendGroupMessage(content, attachments, conversation);
+    const groupIdAsByteArray = new Uint8Array(this._idBuffer);
+    const timestamp = await this.client._busInterface.sendGroupMessage(content, attachments, groupIdAsByteArray);
     return Number(timestamp);
   }
 }
