@@ -27,7 +27,7 @@ class UserConversation extends BaseConversation {
    * @return {Promise<number>} timestamp - The timestamp of the sent message.
    */
   async sendMessage(content, attachments = []) {
-    const conversation = this.id;
+    const conversation = [this.id];
     const timestamp = await this.client._busInterface.sendMessage(content, attachments, conversation);
     return Number(timestamp);
   }

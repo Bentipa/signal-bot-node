@@ -166,9 +166,9 @@ class Client extends EventEmitter {
     );
 
     // Hacky workaround for dbus-next not handling multiple input signatures well.
-    // this._busInterface.$methods
-    //   .filter((method) => method.name === "sendMessage")
-    //   .forEach((method) => (method.inSignature = "sasas"));
+    (this._busInterface.$methods as any)
+      .filter((method) => method.name === "sendMessage")
+      .forEach((method) => (method.inSignature = "sasas"));
   }
 }
 
