@@ -1,6 +1,6 @@
 {
   "name": "signal-bot-node",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A library for creating bots that interact with the Signal application. Not affiliated with the Signal project or Open Whisper Systems.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
